@@ -1,0 +1,132 @@
+A font in Stepmania 5 consists of a set of images and an ini file that
+describes what is in the images.
+
+# Font Pages
+The images are the font pages.  They are simple sprite sheets, each glyph
+fits inside an invisible rectangle, and there are multiple glyphs in the
+image.  The name of the image tells Stepmania which font it's for, the page,
+and how many glyphs it contains.
+
+Example:
+"Normal [main] 16x16.png"
+This is for the font named "Normal", it is the main page, and the letters in
+it are laid out in a 16x16 grid.
+
+
+Font pages can also have stroke layers.  The stroke layer is used when a
+themer applies a stroke color to the text.  It's drawn behind the primary
+layer, and acts as a sort of outline.  The stroke layer must be the same
+size and letter arrangement as the primary layer, and be named like this:
+"Normal [main-stroke] 16x16.png"
+
+When making the images for a font page, it is important to to use the pixel
+at the edge of each grid rectangle.  If the pixel at the edge isn't left
+transparent, it will bleed over and be visible when the adjacent letter is
+drawn.
+
+
+# Font ini
+The ini file should be UTF-8 encoded or ascii.
+
+The ini file for the font must have the same base name as the page images.
+To continue the example:  "Normal.ini"
+
+The ini file has a common section, with some common settings that are
+applied to all pages of the font, and a section for each page.
+
+"bools" in the font ini must actually be set to 0 (false) or 1 (true).
+
+## Common section
+This is a list of the values that can only be set in the common section, with
+a short explanation and an example for each.
+* CapitalsOnly
+	If this bool is true, then lowercase letters rendered with this font will
+	be rendered as uppercase.  
+	CapitalsOnly=1
+* RightToLeft  
+	If this bool is true, the letters on a line of text will be rendered in
+	reverse order.
+	RightToLeft=0
+* DefaultStrokeColor  
+	If this string is set, text in this font will use this stroke color unless
+	the themer sets a different one.  
+	DefaultStrokeColor=#ff00ff
+
+## Page section
+Anything that can be set in a page section can also be set in the common
+section.  So if all pages have the same Baseline value, just set it in the
+common section and leave it out of the section for each page.
+
+A page section has different types of values.  Some set things like the
+baseline, some tell Stepmania what glyphs are on each line of the image,
+some map a special named game button to a part of the font, and some set the
+width of each glyph.
+
+* ### Config values
+	* DrawExtraPixelsLeft
+	* DrawExtraPixelsRight
+	* AddToAllWidths
+	* ScaleAllWidthsBy
+	* DefaultWidth  
+		These are all numbers, so you set them like this:
+		DrawExtraPixelsLeft=0  
+		Each glyph is drawn by taking a rectangle from the image and drawing it
+		on the screen.  
+		To find the edges of the rectangle for a glyph,	Stepmania looks in the
+		list of widths.  If there isn't an entry,	Stepmania uses the
+		DefaultWidth value.  If that's not set, the frame	width from the image
+		is used.  
+		Then the AddToAllWidths value is added to the width, and the result is
+		multiplied by ScaleAllWidthsBy.  AddToAllWidths and ScaleAllWidthsBy are
+		optional, if you want to add 0, and scale by 1, leave them out.  If the
+		width comes out odd, it will be incremented up to make it even.  
+		This width is used for advancing the position that each glyph is drawn
+		at.  
+		The section that is drawn by Stepmania is centered in the grid rectangle
+		as if the grid rectangle containing the glyph were cropped on both sides
+		to fit the width that was calculated above.  
+		DrawExtraPixelsLeft and DrawExtraPixelsRight tell Stepmania to draw a
+		wider area without changing the width that is used for advancing
+		position.  Both of them are incremented after loading, and if
+		DrawExtraPixelsLeft is odd, it's incremented a second time to make it
+		even.  
+		So the width for advancing the position is basically this:
+		(char_width + AddToAllWidths) * ScaleAllWidthsBy  
+		Then Stepmania takes that rectangle and widens it a bit with
+		DrawExtraPixelsLeft and DrawExtraPixelsRight to get the width to use for
+		rendering.
+	* AdvanceExtraPixels  
+		This is added to the width used to advance the position after every
+		glyph, without changing the width that is used for rendering.
+	* LineSpacing
+	* Top
+	* Baseline  
+		
+	* TextureHints
+
+* ### Line values
+	These tell Stepmania what glyphs are on each line of the image.  There
+	must be a line value for each row in the image, and it must have each
+	glyph that appears on that row.  Lines are numbered from 0.  The name must
+	start with "Line ", and have a number.
+	Example:  Line  0= !"#$%&'()*+,-.
+
+* ### Map values
+	These tell Stepmania that a glyph should be used for rendering a game
+	button when the name of the game button occurs in the text like this:
+	"Press &start;"  
+	The value is the id number of the glyph to use.  
+	Example:  map left=0
+
+* ### Glyph widths
+	Now the fun part, telling Stepmania the width of every glyph.  Every glyph
+	has a id number.  id numbers start at 0 in the upper left and count across
+	from left to right, ending in the lower right corner.  So if the font page
+	is 15x15, the first row (Line 0) will have ids 0 through 14, the second
+	row (Line 1) will have ids 15 through 29, and so on until the final row
+	has ids 210 through 224.  Each glyph must have an entry that sets its
+	width, or it will use the DefaultWidth value for the page.
+	This example tells Stepmania that glyph 0 has a width of 32 pixels:  0=32
+
+
+This document is currently incomplete.
