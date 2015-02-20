@@ -98,11 +98,29 @@ width of each glyph.
 	* AdvanceExtraPixels  
 		This is added to the width used to advance the position after every
 		glyph, without changing the width that is used for rendering.
-	* LineSpacing
+	* LineSpacing  
+		This sets the amount of space that Stepmania puts between lines of text
+		when wrapping it.
 	* Top
 	* Baseline  
-		
-	* TextureHints
+		The Top and Baseline are used to set the height of the font.  Baseline
+		should be the number of pixels from the top of the grid rectangle to the
+		bottom of a glyph.  Top should be the number of pixels from the top of
+		the grid rectangle to the top of a glyph.
+	* TextureHints  
+		Textures in Stepmania can have special hints in their filename that tell
+		Stepmania how the image is arranged.  The TextureHints value lists extra
+		hints to apply to the texture, in addition to the hints that are in its
+		filename.  Read texture_hints.txt for a list of all hints.  
+		Example:  
+		TextureHints=32bpp
+	* import  
+		The import value can only be in the main page.  It tells Stepmania to
+		import other fonts into the current one.  It is a comma separated list
+		of font names.  All fonts are forced to import Common default, which
+		imports a bunch of common fonts.  
+		Example:  
+		import=_16px fonts,_japanese 24px,_korean 24px,_misc 16px
 
 * ### Line values
 	These tell Stepmania what glyphs are on each line of the image.  There
@@ -112,11 +130,22 @@ width of each glyph.
 	Example:  Line  0= !"#$%&'()*+,-.
 
 * ### Map values
-	These tell Stepmania that a glyph should be used for rendering a game
-	button when the name of the game button occurs in the text like this:
-	"Press &start;"  
+	Map values are used to assign glyphs to things that cannot be represented
+	with a single character, like game buttons or specific UTF-8 codepoints.
+	All map values start with "map ", and the rest of the name is the game
+	button name or the UTF-8 code point.  
 	The value is the id number of the glyph to use.  
-	Example:  map left=0
+	They come in 3 different forms:
+	* Hex value:  map U+2126=0  
+		This maps a UTF-8 code point by specifying the hex value for it.
+	* Codepoint:  map Ω=0
+		This maps a UTF-8 code point by specifying the literal UTF-8 character.
+	* Game button:  map left=0  
+		This maps a specific game button.  The glyph will be used when the game
+		button name  occurs in the text like this: "Press &start;"
+
+* ### Range values
+	
 
 * ### Glyph widths
 	Now the fun part, telling Stepmania the width of every glyph.  Every glyph

@@ -13,9 +13,7 @@ this, the only way to change to another theme is to press the Operator key
 to bring up the service menu.
 
 
-Fonts in Stepmania are a bit troublesome to create.  There aren't any special
-keys for reloading the font ini files (yet), so any time you change the ini
-file, you have to close Stepmania and reopen it.  I recommend putting your
+Fonts in Stepmania are a bit troublesome to create.  I recommend putting your
 songs in a special folder instead of the normal Songs folder so that you
 don't have to wait for long load times.  After you're done making the font,
 you don't even have to move your songs back, you can just put the name of the

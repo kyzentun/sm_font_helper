@@ -70,6 +70,12 @@ return Def.ActorFrame{
 				:diffuse(color("#000000"))
 		end
 	},
+	Def.Quad{
+		InitCommand= function(self)
+			self:xy(_screen.cx, _screen.cy):setsize(_screen.w, 1)
+				:diffuse(color("#3f3f3f"))
+		end
+	},
 	Def.BitmapText{
 		Font= "Common Normal", Text= THEME:GetString("ScreenFontTest", "help"),
 		InitCommand= function(self)
