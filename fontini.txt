@@ -62,6 +62,11 @@ baseline, some tell Stepmania what glyphs are on each line of the image,
 some map a special named game button to a part of the font, and some set the
 width of each glyph.
 
+Line values, Map values, and Range values are 3 different ways of telling
+Stepmania what glyphs the font supports and the sprite frames to use for
+them.  They are not mutually exclusive, any combination of them can be used
+in a font page.
+
 * ### Config values
 	* DrawExtraPixelsLeft
 	* DrawExtraPixelsRight
@@ -123,10 +128,8 @@ width of each glyph.
 		import=_16px fonts,_japanese 24px,_korean 24px,_misc 16px
 
 * ### Line values
-	These tell Stepmania what glyphs are on each line of the image.  There
-	must be a line value for each row in the image, and it must have each
-	glyph that appears on that row.  Lines are numbered from 0.  The name must
-	start with "Line ", and have a number.
+	These tell Stepmania what glyphs are on a line of the image.  Lines are
+	numbered from 0.  
 	Example:  Line  0= !"#$%&'()*+,-.
 
 * ### Map values
@@ -145,6 +148,14 @@ width of each glyph.
 		button name  occurs in the text like this: "Press &start;"
 
 * ### Range values
+	Range assign a range of glyphs, starting at the sprite id given.  Range
+	values have the name of the codeset to use, and an optional starting and
+	ending hex value.  If the starting and ending hex values are not given, the
+	entire codeset is mapped, starting with its first glyph.  Codeset names
+	are:  Unicode, ascii, basic-japanese, iso-8859-1, cp1252, iso-8859-2,
+	korean-jamo, numbers  
+	Codeset example:  range cp1252=0
+	Example with range:  range iso-8859-2 #80-ff=0
 	
 
 * ### Glyph widths
@@ -158,4 +169,8 @@ width of each glyph.
 	This example tells Stepmania that glyph 0 has a width of 32 pixels:  0=32
 
 
-This document is currently incomplete.
+
+
+This document is now complete.  If you notice any errors or parts that need
+a better explanation, please report them by opening an issue on github or a
+thread on the stepmania.com forums.
