@@ -21,6 +21,10 @@ don't have to wait for long load times.  After you're done making the font,
 you don't even have to move your songs back, you can just put the name of the
 folder in the AdditionalSongFolders preference in Preferences.ini.
 
+Also, practically any mistake in the font causes Stepmania to crash out with
+a message in the log.  This is why you need your load time as short as
+possible.
+
 
 fontini.txt has an explanation of the structure of a font.
 
