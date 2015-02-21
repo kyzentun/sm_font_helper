@@ -4,6 +4,7 @@ local example_text= false
 local zoom_value= 1
 local line_height= 32
 local text_width= _screen.w-16
+local stroke_on= false
 
 local function update_string_name()
 	string_name:settext(
@@ -47,6 +48,13 @@ local function input(event)
 		update_zoom_text(.1)
 	elseif event.GameButton == "MenuDown" then
 		update_zoom_text(-.1)
+	elseif event.button == "UpLeft" then
+		stroke_on= not stroke_on
+		if stroke_on then
+			example_text:strokecolor(color("#ffffffff")):diffuse(color("#000000"))
+		else
+			example_text:strokecolor(color("#00000000")):diffuse(color("#ffffff"))
+		end
 	elseif event.type == "InputEventType_Repeat" then
 		-- Block repeat events from changing the font because it causes the
 		-- screen to reload.

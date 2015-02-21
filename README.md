@@ -1,17 +1,20 @@
 # SM Font Helper
 A theme to help with making fonts for Stepmania.
 
-# Know your Operator Key
-Before using this theme, make sure you have the Operator key mapped.  By
-default, the Operator key is mapped to Scroll Lock.  If your keyboard does
-not have Scroll Lock, map the Operator key to something you have.
-
 # Purpose
 This theme is not intended for gameplay.  It is a skeleton theme containing
 only a single screen, for checking rendering of glyphs in a font.  Because of
 this, the only way to change to another theme is to press the Operator key
 to bring up the service menu.
 
+# Know your Operator Key
+Before using this theme, make sure you have the Operator key mapped.  By
+default, the Operator key is mapped to Scroll Lock.  If your keyboard does
+not have Scroll Lock, map the Operator key to something you have.
+
+# Special Keys
+This theme is designed to be used in dance game mode.  
+Map Select, UpLeft, and UpRight, these will be used for controls.
 
 Fonts in Stepmania are a bit troublesome to create.  I recommend putting your
 songs in a special folder instead of the normal Songs folder so that you
