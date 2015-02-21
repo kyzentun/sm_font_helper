@@ -1,4 +1,4 @@
-# sm_font_helper
+# SM Font Helper
 A theme to help with making fonts for Stepmania.
 
 # Know your Operator Key

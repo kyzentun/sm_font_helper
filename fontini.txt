@@ -100,18 +100,22 @@ in a font page.
 		Then Stepmania takes that rectangle and widens it a bit with
 		DrawExtraPixelsLeft and DrawExtraPixelsRight to get the width to use for
 		rendering.
+
 	* AdvanceExtraPixels  
 		This is added to the width used to advance the position after every
 		glyph, without changing the width that is used for rendering.
+
 	* LineSpacing  
 		This sets the amount of space that Stepmania puts between lines of text
 		when wrapping it.
+
 	* Top
 	* Baseline  
 		The Top and Baseline are used to set the height of the font.  Baseline
 		should be the number of pixels from the top of the grid rectangle to the
 		bottom of a glyph.  Top should be the number of pixels from the top of
 		the grid rectangle to the top of a glyph.
+
 	* TextureHints  
 		Textures in Stepmania can have special hints in their filename that tell
 		Stepmania how the image is arranged.  The TextureHints value lists extra
@@ -119,6 +123,7 @@ in a font page.
 		filename.  Read texture_hints.txt for a list of all hints.  
 		Example:  
 		TextureHints=32bpp
+
 	* import  
 		The import value can only be in the main page.  It tells Stepmania to
 		import other fonts into the current one.  It is a comma separated list

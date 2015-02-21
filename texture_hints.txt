@@ -1,10 +1,57 @@
 This is a list of all the hints that can be in the filename of a texture in
-Stepmania.
+Stepmania.  Hints are used to tell Stepmania about special properties of the
+texture and come in many different forms.  All hints are optional, only put
+them in the filename if Stepmania should not use the natural image data.
+With the exception of the sprite frame and resolution hints, texture hints can
+be anywhere in the filename, so be careful not to use them on accident.
 
 * Sprite frames  
 	Sprite frame hints are two numbers separated by 'x' that tell Stepmania
-	how many columns and rows of sprite frames the texture contains.  
+	how many columns and rows of sprite frames the texture contains.  The
+	sprite frame hint must be the last hint in the filename, the dot before
+	the extension must be the next character.  
 	Example:  16x16  
 	This tells Stepmania that the texture is split into frames, with 16 frames
 	on each row and 16 rows.  So a texture that is 320x224 in size and has the
 	16x16 hint in its filename is split into frames that are 20x14.
+
+* Resolution  
+	The resolution hint tells stepmania what resolution the texture should be
+	treated as when it is rendered, instead of using the size of the texture.
+	The resolution hint must be inside a set of parentheses.  This makes it
+	not look like the sprite frame hint.  
+	Example:  (res 512x128)
+
+* Bits per pixel  
+	The bpp hint tells Stepmania to use a particular color depth for the texture
+	instead of the color depth of the image.  It has two forms: 32bpp and 16bpp.
+
+* Dither  
+	Enables dithering for the texture.  
+	Example: dither
+
+* Stretch  
+	Enables stretching for the texture.  
+	Example: stretch
+
+* Mipmaps  
+	Enables mipmaps for the texture.  
+	Example: mipmaps
+
+* No Mipmaps  
+	Disables mipmaps for the texture.  
+	Example: nomipmaps
+
+* Grayscale  
+	Turns the image into grayscale mode.  
+	Example: grayscale
+
+* Alphamap  
+	This indicates that the only component in the texture is alpha; assume all
+	color is white.  
+	Example: alphamap
+
+* doubleres  
+	This tells Stepmania that the source image has double the resolution that
+	the result texture should have.  
+	Example: doubleres
